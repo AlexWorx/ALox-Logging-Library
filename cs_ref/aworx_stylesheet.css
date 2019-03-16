@@ -921,7 +921,8 @@ span {
 /* @group Code Colorization */
 
 span.keyword {
-    color: #000040
+    color: #000040;
+    font-weight: normal;
 }
 
 span.keywordtype {
@@ -941,11 +942,13 @@ span.preprocessor {
 }
 
 span.stringliteral {
-    color: #802020
+    color: #FF2020;
+    font-weight: normal;
 }
 
 span.charliteral {
-    color: #802020
+    color: #FF2020;
+    font-weight: normal;
 }
 
 span.vhdldigit {

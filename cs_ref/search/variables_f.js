@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['parent',['Parent',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a8dc3c25005f0e2de28d10fb5d12b97cb',1,'cs.aworx.lox.core.Domain.Parent()'],['../classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#a81a028255ddea0de66dea19140d52bfb',1,'cs.aworx.lib.util.StringTree.Node.parent()']]],
+  ['parent',['Parent',['../classcs_1_1aworx_1_1lox_1_1detail_1_1Domain.html#a8dc3c25005f0e2de28d10fb5d12b97cb',1,'cs.aworx.lox.detail.Domain.Parent()'],['../classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#a81a028255ddea0de66dea19140d52bfb',1,'cs.aworx.lib.util.StringTree.Node.parent()']]],
   ['parser',['parser',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac5266ddfc119218fadb17b56e0aa7f18',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
-  ['path',['Path',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a5e583dd1bf88abfb28487df2f676a6e8',1,'cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
+  ['path',['Path',['../classcs_1_1aworx_1_1lox_1_1detail_1_1ScopeInfo_1_1SourcePathTrimRule.html#a5e583dd1bf88abfb28487df2f676a6e8',1,'cs::aworx::lox::detail::ScopeInfo::SourcePathTrimRule']]],
   ['pathsorter',['pathSorter',['../classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1Sorter.html#ad31a4dcb4209f5660e7b0bb286597f0d',1,'cs::aworx::lib::util::StringTree::Walker::Sorter']]],
   ['phaalignment',['phaAlignment',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a42cf696609494c55050a14311909a4c8',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
   ['phaalignmentspecified',['phaAlignmentSpecified',['../classcs_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#aa4fc2a97542a8043de0b8a06ce2f296d',1,'cs::aworx::lib::strings::format::FormatterStdImpl']]],
@@ -30,14 +30,14 @@ var searchData=
   ['plussign',['PlusSign',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a47b728ba91b6729f1a6c2a07e66fbf06',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['pow10_5f0to19',['pow10_0to19',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a5f777949702ffefd46ad2d48ae5a1e48',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['prefixes',['PREFIXES',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a356160ccbbf174202c8b5fa40c785064',1,'cs::aworx::lox::ALox']]],
-  ['prefixlogables',['PrefixLogables',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a5ed8e1ef394df43aa6cc12506276a617',1,'cs::aworx::lox::core::Domain']]],
+  ['prefixlogables',['PrefixLogables',['../classcs_1_1aworx_1_1lox_1_1detail_1_1Domain.html#a5ed8e1ef394df43aa6cc12506276a617',1,'cs::aworx::lox::detail::Domain']]],
   ['prio',['prio',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html#a6f8e491cf1d80eb127fe0c10ebbfc659',1,'cs::aworx::lib::config::Configuration::PluginAndPrio']]],
   ['prioautodetect',['PrioAutodetect',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab092b4bf4ab5c2cc772271e61ea3bda4',1,'cs::aworx::lib::config::Configuration']]],
   ['priocliargs',['PrioCLIArgs',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a2573cf424d621f540787611328cdc705',1,'cs::aworx::lib::config::Configuration']]],
   ['priodefaultvalues',['PrioDefaultValues',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#acc96dac6a4ac6625c609dae85ed53e0e',1,'cs::aworx::lib::config::Configuration']]],
   ['prioenvironment',['PrioEnvironment',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ab592c568f9f8728e38684af9d258a2f7',1,'cs::aworx::lib::config::Configuration']]],
   ['prioprotectedvalues',['PrioProtectedValues',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a99234e433b0f7d5a269426910e255637',1,'cs::aworx::lib::config::Configuration']]],
-  ['priority',['Priority',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802',1,'cs.aworx.lib.config.Variable.Priority()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#a4450b0bad265ba3bd24e994f70aec802',1,'cs.aworx.lox.core.Domain.LoggerData.Priority()'],['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4450b0bad265ba3bd24e994f70aec802',1,'cs.aworx.lox.core.ScopeInfo.SourcePathTrimRule.Priority()']]],
+  ['priority',['Priority',['../classcs_1_1aworx_1_1lib_1_1config_1_1Variable.html#a4450b0bad265ba3bd24e994f70aec802',1,'cs.aworx.lib.config.Variable.Priority()'],['../classcs_1_1aworx_1_1lox_1_1detail_1_1Domain_1_1LoggerData.html#a4450b0bad265ba3bd24e994f70aec802',1,'cs.aworx.lox.detail.Domain.LoggerData.Priority()'],['../classcs_1_1aworx_1_1lox_1_1detail_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4450b0bad265ba3bd24e994f70aec802',1,'cs.aworx.lox.detail.ScopeInfo.SourcePathTrimRule.Priority()']]],
   ['priostandard',['PrioStandard',['../classcs_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a7ef42318be093162a1f355065334eb7d',1,'cs::aworx::lib::config::Configuration']]],
-  ['pruneescsequences',['PruneESCSequences',['../classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html#a9d44a2f52e37f22c5893a1c174251749',1,'cs::aworx::lox::core::textlogger::PlainTextLogger']]]
+  ['pruneescsequences',['PruneESCSequences',['../classcs_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1PlainTextLogger.html#a9d44a2f52e37f22c5893a1c174251749',1,'cs::aworx::lox::detail::textlogger::PlainTextLogger']]]
 ];

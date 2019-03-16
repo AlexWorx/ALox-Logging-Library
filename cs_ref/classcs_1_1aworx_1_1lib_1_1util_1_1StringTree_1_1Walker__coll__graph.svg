@@ -12,13 +12,16 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
+<g id="a_node1"><a xlink:title=" ">
 <polygon fill="#bfbfbf" stroke="#000000" points="23,-.5 23,-19.5 142,-19.5 142,-.5 23,-.5"/>
 <text text-anchor="middle" x="82.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">StringTree&lt; T &gt;.Walker</text>
+</a>
+</g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="AString">
+<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="0,-67.5 0,-86.5 49,-86.5 49,-67.5 0,-67.5"/>
 <text text-anchor="middle" x="24.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AString</text>
 </a>
@@ -34,7 +37,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1Sorter.html" target="_top" xlink:title="StringTree\&lt; T \&gt;.Walker.Sorter">
+<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1Sorter.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="67,-67.5 67,-86.5 214,-86.5 214,-67.5 67,-67.5"/>
 <text text-anchor="middle" x="140.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">StringTree&lt; T &gt;.Walker.Sorter</text>
 </a>

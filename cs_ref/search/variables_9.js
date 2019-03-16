@@ -1,8 +1,8 @@
 var searchData=
 [
   ['idelogger',['IDELogger',['../classcs_1_1aworx_1_1lox_1_1Log.html#a310bb1907f5565fa503e4ab259abdf3d',1,'cs::aworx::lox::Log']]],
-  ['includeotherpls',['IncludeOtherPLs',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html#a70d196645ee1890701dc5148f1af5308',1,'cs::aworx::lox::core::Domain::PL']]],
-  ['includestring',['IncludeString',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d',1,'cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
+  ['includeotherpls',['IncludeOtherPLs',['../classcs_1_1aworx_1_1lox_1_1detail_1_1Domain_1_1PL.html#a70d196645ee1890701dc5148f1af5308',1,'cs::aworx::lox::detail::Domain::PL']]],
+  ['includestring',['IncludeString',['../classcs_1_1aworx_1_1lox_1_1detail_1_1ScopeInfo_1_1SourcePathTrimRule.html#a4dfbe3fa1c6cd975f1a6a3b17dc6ac8d',1,'cs::aworx::lox::detail::ScopeInfo::SourcePathTrimRule']]],
   ['infliteral',['INFLiteral',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a144ba9557466c49566a737452edf68f4',1,'cs::aworx::lib::strings::NumberFormat']]],
   ['instlinebeginidx',['instLineBeginIdx',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#aaa958e582bb109b5cf63121eb10a194a',1,'cs::aworx::lox::tools::LogTools']]],
   ['instlinenumber',['instLineNumber',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a4ef97f200cc58b6c0e22c895ddf7c76b',1,'cs::aworx::lox::tools::LogTools']]],
@@ -10,10 +10,10 @@ var searchData=
   ['insttypetabstop',['instTypeTabStop',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#a1cfe4bbb4fae0ca0db99d3fe768ffa64',1,'cs::aworx::lox::tools::LogTools']]],
   ['instvaluetabstop',['instValueTabStop',['../classcs_1_1aworx_1_1lox_1_1tools_1_1LogTools.html#ac586537acea9202be95f5cf793324550',1,'cs::aworx::lox::tools::LogTools']]],
   ['integralpartminimumwidth',['IntegralPartMinimumWidth',['../classcs_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a2a4db10f06c84cfd604377afdf6d3678',1,'cs::aworx::lib::strings::NumberFormat']]],
-  ['internaldomains',['InternalDomains',['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()'],['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()']]],
+  ['internaldomains',['internalDomains',['../classcs_1_1aworx_1_1lox_1_1Lox.html#aa921f3f43ab67608196f46723182a3c4',1,'cs.aworx.lox.Lox.internalDomains()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a7b6260c97ca73f960a2b5aabd5cc91ae',1,'cs.aworx.lox.ALox.InternalDomains()']]],
   ['internalfrequency',['InternalFrequency',['../classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html#ae62f17585d560a30016408f33ace2912',1,'cs::aworx::lib::time::Ticks']]],
   ['intmsg',['intMsg',['../classcs_1_1aworx_1_1lox_1_1Lox.html#adc7950715b5ea60bbbfe297cf70fb70f',1,'cs::aworx::lox::Lox']]],
   ['isinitialized',['isInitialized',['../classcs_1_1aworx_1_1lib_1_1ALIB.html#a1fdc2bf5595c2e64dc06d987769834eb',1,'cs.aworx.lib.ALIB.isInitialized()'],['../classcs_1_1aworx_1_1lox_1_1ALox.html#a1fdc2bf5595c2e64dc06d987769834eb',1,'cs.aworx.lox.ALox.isInitialized()']]],
-  ['isprefix',['IsPrefix',['../classcs_1_1aworx_1_1lox_1_1core_1_1ScopeInfo_1_1SourcePathTrimRule.html#af3bc9a519dad021ce04b07599d610ccd',1,'cs::aworx::lox::core::ScopeInfo::SourcePathTrimRule']]],
+  ['isprefix',['IsPrefix',['../classcs_1_1aworx_1_1lox_1_1detail_1_1ScopeInfo_1_1SourcePathTrimRule.html#af3bc9a519dad021ce04b07599d610ccd',1,'cs::aworx::lox::detail::ScopeInfo::SourcePathTrimRule']]],
   ['italics',['ITALICS',['../classcs_1_1aworx_1_1lox_1_1ESC.html#a105ee932ad6e094242e289ebb81d4aba',1,'cs::aworx::lox::ESC']]]
 ];

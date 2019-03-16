@@ -2,12 +2,12 @@ var searchData=
 [
   ['acquirers',['acquirers',['../classcom_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html#afb1e2e3e704c405582819edf6e5e19a0',1,'com::aworx::lib::threads::SmartLock']]],
   ['actchild',['actChild',['../classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1RecursionData.html#a5e66492f0676a234ffb6095476900d27',1,'com::aworx::lib::util::StringTree::Walker::RecursionData']]],
-  ['actpackagelevel',['actPackageLevel',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a4c28e4823062c8f744be67dfadeda68f',1,'com::aworx::lox::core::ScopeStore']]],
+  ['actpackagelevel',['actPackageLevel',['../classcom_1_1aworx_1_1lox_1_1detail_1_1ScopeStore.html#a4c28e4823062c8f744be67dfadeda68f',1,'com::aworx::lox::detail::ScopeStore']]],
   ['actpath',['actPath',['../classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a59910a8fc21cdcafcd9e7ff1597014ed',1,'com::aworx::lib::util::StringTree::Walker']]],
-  ['actscope',['actScope',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee',1,'com::aworx::lox::core::ScopeStore']]],
-  ['actstringtreenode',['actStringTreeNode',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#af5fb3918a366ea7f8f86a12a7dccc3f9',1,'com::aworx::lox::core::ScopeStore']]],
-  ['actthread',['actThread',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeStore.html#a64257a7b447d7633ab917c0096ea1f7b',1,'com::aworx::lox::core::ScopeStore']]],
-  ['actual',['actual',['../classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html#a4f83cc7feb7c540ea14bd73c5195b9c9',1,'com::aworx::lib::strings::util::Tokenizer']]],
+  ['actscope',['actScope',['../classcom_1_1aworx_1_1lox_1_1detail_1_1ScopeStore.html#ab420b6d519025a485c6345895ad174ee',1,'com::aworx::lox::detail::ScopeStore']]],
+  ['actstringtreenode',['actStringTreeNode',['../classcom_1_1aworx_1_1lox_1_1detail_1_1ScopeStore.html#af5fb3918a366ea7f8f86a12a7dccc3f9',1,'com::aworx::lox::detail::ScopeStore']]],
+  ['actthread',['actThread',['../classcom_1_1aworx_1_1lox_1_1detail_1_1ScopeStore.html#a64257a7b447d7633ab917c0096ea1f7b',1,'com::aworx::lox::detail::ScopeStore']]],
+  ['actual',['actual',['../classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes_1_1Entry.html#ab45b5270856ae9a7c5869af590e53e18',1,'com.aworx.lib.strings.util.AutoSizes.Entry.actual()'],['../classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html#a4f83cc7feb7c540ea14bd73c5195b9c9',1,'com.aworx.lib.strings.util.Tokenizer.actual()']]],
   ['actualindex',['actualIndex',['../classcom_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html#a878dc4b2ee69905e75e4254ef541ec0f',1,'com::aworx::lib::strings::util::AutoSizes']]],
   ['allowedminimumshortcut',['allowedMinimumShortCut',['../classcom_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html#adf9959751de6d8612002ccfeb2288b9e',1,'com::aworx::lib::config::CLIArgs']]],
   ['alternativenumberformat',['alternativeNumberFormat',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#aa7126090b0797d7a5a967bbc9bff6e41',1,'com::aworx::lib::strings::format::FormatterStdImpl']]],
@@ -55,5 +55,5 @@ var searchData=
   ['ascending',['ASCENDING',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1SortOrder.html#a04d720b2ffd1c1b2fb9b9a4e7c1db96d',1,'com::aworx::lib::lang::SortOrder']]],
   ['auto_5fsizes',['AUTO_SIZES',['../classcom_1_1aworx_1_1lox_1_1ALox.html#afe232793ac3cbfb875ee97f8a495df1d',1,'com::aworx::lox::ALox']]],
   ['autosave',['autoSave',['../classcom_1_1aworx_1_1lib_1_1config_1_1IniFile.html#a5b3964b63bd8facd8a6282509c924916',1,'com::aworx::lib::config::IniFile']]],
-  ['autosizes',['autoSizes',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterPythonStyle.html#aa4f19574c48ddda56b341246abd50bcd',1,'com.aworx.lib.strings.format.FormatterPythonStyle.autoSizes()'],['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html#aa4f19574c48ddda56b341246abd50bcd',1,'com.aworx.lox.core.textlogger.TextLogger.autoSizes()']]]
+  ['autosizes',['autoSizes',['../classcom_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1TextLogger.html#aa4f19574c48ddda56b341246abd50bcd',1,'com::aworx::lox::detail::textlogger::TextLogger']]]
 ];

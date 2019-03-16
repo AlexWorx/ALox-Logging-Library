@@ -13,7 +13,7 @@ var searchData=
   ['deletestart_5fnc',['DeleteStart_NC',['../classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html#af5da0511b71396a9d3b18874d7fb6127',1,'cs::aworx::lib::strings::AString']]],
   ['depth',['depth',['../classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#acf8e2f791de955ccde3115b485b94dc9',1,'cs.aworx.lib.util.StringTree.Node.depth()'],['../classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html#a72fdcb31622fdd4b1197a207a6a6685e',1,'cs.aworx.lib.util.StringTree.Cursor.Depth()'],['../classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker.html#a72fdcb31622fdd4b1197a207a6a6685e',1,'cs.aworx.lib.util.StringTree.Walker.Depth()']]],
   ['deserialize',['Deserialize',['../classcs_1_1aworx_1_1lox_1_1tools_1_1json_1_1DynamicJSONDeserializer.html#a01092d5e0484947c002d470453cbf4b5',1,'cs::aworx::lox::tools::json::DynamicJSONDeserializer']]],
-  ['domain',['Domain',['../classcs_1_1aworx_1_1lox_1_1core_1_1Domain.html#a637c01c7001a9eb7a5734fe7bc00a03f',1,'cs::aworx::lox::core::Domain']]],
+  ['domain',['Domain',['../classcs_1_1aworx_1_1lox_1_1detail_1_1Domain.html#a637c01c7001a9eb7a5734fe7bc00a03f',1,'cs::aworx::lox::detail::Domain']]],
   ['domainsubstitutionrule',['DomainSubstitutionRule',['../classcs_1_1aworx_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a8b30f3a721abf15d09f442304685e83e',1,'cs::aworx::lox::Lox::DomainSubstitutionRule']]],
   ['doreport',['DoReport',['../classcs_1_1aworx_1_1lib_1_1lang_1_1Report.html#af1878adc11a7ef4d03ae41ca3bd06973',1,'cs::aworx::lib::lang::Report']]],
   ['dumpstateonloggerremoval',['dumpStateOnLoggerRemoval',['../classcs_1_1aworx_1_1lox_1_1Lox.html#a8801e9bd1ba933633227c2d83339ef14',1,'cs::aworx::lox::Lox']]],

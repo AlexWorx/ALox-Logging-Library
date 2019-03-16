@@ -3,7 +3,7 @@ var searchData=
   ['if_5fnot_5fexistent',['IF_NOT_EXISTENT',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1Create.html#a495529ae1aa75493f43089c7b5ee7c15',1,'com::aworx::lib::lang::Create']]],
   ['ignore',['IGNORE',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1Case.html#a6ece700224ae83a646bc5b2c07c6fee8',1,'com::aworx::lib::lang::Case']]],
   ['include',['INCLUDE',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1Inclusion.html#a7142aafb51bbc0998c5e45e9235f67fe',1,'com::aworx::lib::lang::Inclusion']]],
-  ['includeotherpls',['includeOtherPLs',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1PL.html#a70cdb4bc580f547571551ac86332863f',1,'com::aworx::lox::core::Domain::PL']]],
+  ['includeotherpls',['includeOtherPLs',['../classcom_1_1aworx_1_1lox_1_1detail_1_1Domain_1_1PL.html#a70cdb4bc580f547571551ac86332863f',1,'com::aworx::lox::detail::Domain::PL']]],
   ['infliteral',['INFLiteral',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a144ba9557466c49566a737452edf68f4',1,'com::aworx::lib::strings::NumberFormat']]],
   ['info',['INFO',['../enumcom_1_1aworx_1_1lox_1_1Verbosity.html#ab1764b91c3b44a5988564bbfe1d6e352',1,'com::aworx::lox::Verbosity']]],
   ['insert',['INSERT',['../enumcom_1_1aworx_1_1lib_1_1lang_1_1ContainerOp.html#a7413a7bd185dd81a3b5df334bc212303',1,'com::aworx::lib::lang::ContainerOp']]],

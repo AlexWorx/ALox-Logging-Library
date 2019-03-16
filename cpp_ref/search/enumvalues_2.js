@@ -1,12 +1,13 @@
 var searchData=
 [
   ['callbackexceptionfallthrough',['CallbackExceptionFallThrough',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a54935d405a62c0faf5bea2a1bde5f5e6aa4b0631c4c1945fdaf86a32a0e357615',1,'aworx::lib::expressions']]],
+  ['camelcase',['CamelCase',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1util_1_1Token.html#aab9aef1944286b5ca2968942df0e8e9ca3f4547e7ab0e48f44bc3f81bf9260440',1,'aworx::lib::strings::util::Token']]],
   ['casesensitivenamedexpressions',['CaseSensitiveNamedExpressions',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a54935d405a62c0faf5bea2a1bde5f5e6a84c8262d7f9e1ddf967be19e8fc94445',1,'aworx::lib::expressions']]],
-  ['center',['Center',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd',1,'aworx::lib::lang']]],
-  ['character',['Character',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a4660396d3d3ae4a0b0985d23df5c32e8a76a40e4f974fd895a0a2598c1cee28b4',1,'aworx::lib::strings::format::FormatterStdImpl']]],
+  ['center',['Center',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#acdfaca60ec19c0265bac2692d7982726a4f1f6016fc9f3f2353c0cc7c67b292bd',1,'aworx::lib']]],
+  ['character',['Character',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1stringformat_1_1FormatterStdImpl.html#a50cdad98739c6d79a1266fb8d2eb6106a76a40e4f974fd895a0a2598c1cee28b4',1,'aworx::lib::stringformat::FormatterStdImpl']]],
   ['circularnestedexpressions',['CircularNestedExpressions',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a8d828d7f6e0c02a7815c7e1308d3b06ea4483b3169767a7b512ef3f1a5573df4e',1,'aworx::lib::expressions']]],
   ['circularnestedexpressionsinfo',['CircularNestedExpressionsInfo',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a8d828d7f6e0c02a7815c7e1308d3b06ead1072e0080997fa27c2e9ab366c329ce',1,'aworx::lib::expressions']]],
-  ['clear',['Clear',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2',1,'aworx::lib::lang']]],
+  ['clear',['Clear',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#a9345007d67faa05253932092d54d10d4adc30bc0c7914db5918da4263fce93ad2',1,'aworx::lib']]],
   ['cli',['CLI',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1config.html#a4f738b6463e8c773284e5173741814dda91af5705f16502125e8b2187e64202c0',1,'aworx::lib::config']]],
   ['cliargs',['CLIArgs',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1cli.html#a0bb22a55f0c61b1201f850038a03fda1a25684e967cecda2c1071e3fbf6b2ff5e',1,'aworx::lib::cli']]],
   ['clideclarations',['CLIDeclarations',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1cli.html#a0bb22a55f0c61b1201f850038a03fda1a01c172b2be5927296790a83024c28abe',1,'aworx::lib::cli']]],
@@ -23,8 +24,8 @@ var searchData=
   ['console_5flight_5fcolors',['CONSOLE_LIGHT_COLORS',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lox.html#a382a38852335f58a53739d455c7d67c9a1406d36082094d9896893e2c0241dbfc',1,'aworx::lib::lox']]],
   ['console_5ftype',['CONSOLE_TYPE',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lox.html#a382a38852335f58a53739d455c7d67c9a3906ee006af77b8fa8262283f9caf7e4',1,'aworx::lib::lox']]],
   ['constant',['Constant',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1expressions_1_1detail_1_1VirtualMachine_1_1Command.html#a1e7d74cfa04b5f0335eea9a33d62abedacb17869fe51048b5a5c4c6106551a255',1,'aworx::lib::expressions::detail::VirtualMachine::Command']]],
-  ['copy',['Copy',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#ab0acd6daf9443d8b997f1035cfe08dd8a5fb63579fc981698f97d55bfecb213ea',1,'aworx::lib::lang']]],
-  ['create',['Create',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f',1,'aworx::lib::lang']]],
+  ['copy',['Copy',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#ab0acd6daf9443d8b997f1035cfe08dd8a5fb63579fc981698f97d55bfecb213ea',1,'aworx::lib']]],
+  ['create',['Create',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#af6d9cc1e6686eca6e60d57d959cf57fba686e697538050e4664636337cc3b834f',1,'aworx::lib']]],
   ['current',['Current',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0a222a267cc5778206b253be35ee3ddab5',1,'aworx::lib::system::Directory']]],
   ['custom',['Custom',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1config.html#ac55b7da10891e6be23f1dcc7a7daa286a90589c47f06eb971d548591f23c285af',1,'aworx::lib::config::Custom()'],['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#add6d77f919179e44f6147a0ef9352e59a90589c47f06eb971d548591f23c285af',1,'aworx::lib::expressions::Custom()']]]
 ];

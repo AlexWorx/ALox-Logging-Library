@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1805 R. 0" ref="index.html">
+      <section title="ALox V. 1903 R. 0" ref="index.html">
         <section title="Overview" ref="alox_cpp_mainpage.html" />
         <section title="Tutorial" ref="alox_cpp_tutorial.html" />
         <section title="IDE/Build system setup" ref="alox_cpp_setup.html" />
@@ -50,6 +50,7 @@
       <file>alox_cpp_tutorial.html</file>
       <file>graph_legend.svg</file>
       <file>graph_legend.html</file>
+      <file>dir_81424563892a28e23fc880f9d91899b6.html</file>
       <file>index.html</file>
       <file>pages.html</file>
     </files>

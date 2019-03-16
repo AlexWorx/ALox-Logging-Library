@@ -12,13 +12,16 @@
 <!-- Node6 -->
 <g id="node1" class="node">
 <title>Node6</title>
-<polygon fill="#bfbfbf" stroke="#000000" points="204.5,-.5 204.5,-19.5 312.5,-19.5 312.5,-.5 204.5,-.5"/>
+<g id="a_node1"><a xlink:title=" ">
+<polygon fill="#bfbfbf" stroke="#000000" points="205.5,-.5 205.5,-19.5 311.5,-19.5 311.5,-.5 205.5,-.5"/>
 <text text-anchor="middle" x="258.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CLRDebuggerLogger</text>
+</a>
+</g>
 </g>
 <!-- Node7 -->
 <g id="node2" class="node">
 <title>Node7</title>
-<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html" target="_top" xlink:title="PlainTextLogger">
+<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1PlainTextLogger.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="215.5,-57.5 215.5,-76.5 301.5,-76.5 301.5,-57.5 215.5,-57.5"/>
 <text text-anchor="middle" x="258.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">PlainTextLogger</text>
 </a>
@@ -33,7 +36,7 @@
 <!-- Node8 -->
 <g id="node3" class="node">
 <title>Node8</title>
-<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title="TextLogger">
+<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="226,-114.5 226,-133.5 291,-133.5 291,-114.5 226,-114.5"/>
 <text text-anchor="middle" x="258.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">TextLogger</text>
 </a>
@@ -48,7 +51,7 @@
 <!-- Node9 -->
 <g id="node4" class="node">
 <title>Node9</title>
-<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger">
+<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lox_1_1detail_1_1Logger.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="235.5,-182.5 235.5,-201.5 281.5,-201.5 281.5,-182.5 235.5,-182.5"/>
 <text text-anchor="middle" x="258.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Logger</text>
 </a>
@@ -63,7 +66,7 @@
 <!-- Node10 -->
 <g id="node5" class="node">
 <title>Node10</title>
-<g id="a_node5"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="SmartLock">
+<g id="a_node5"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="316.5,-283.5 316.5,-302.5 380.5,-302.5 380.5,-283.5 316.5,-283.5"/>
 <text text-anchor="middle" x="348.5" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">SmartLock</text>
 </a>
@@ -78,7 +81,7 @@
 <!-- Node11 -->
 <g id="node6" class="node">
 <title>Node11</title>
-<g id="a_node6"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title="ThreadLock">
+<g id="a_node6"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="314.5,-361.5 314.5,-380.5 382.5,-380.5 382.5,-361.5 314.5,-361.5"/>
 <text text-anchor="middle" x="348.5" y="-368.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ThreadLock</text>
 </a>
@@ -93,7 +96,7 @@
 <!-- Node12 -->
 <g id="node7" class="node">
 <title>Node12</title>
-<g id="a_node7"><a xlink:href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" target="_top" xlink:title="Ticks">
+<g id="a_node7"><a xlink:href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="255,-429.5 255,-448.5 296,-448.5 296,-429.5 255,-429.5"/>
 <text text-anchor="middle" x="275.5" y="-436.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Ticks</text>
 </a>
@@ -122,18 +125,18 @@
 <text text-anchor="middle" x="344.5" y="-442" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> CreationTime</text>
 <text text-anchor="middle" x="344.5" y="-431" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tempTicks</text>
 </g>
-<!-- Node16 -->
-<g id="node11" class="node">
-<title>Node16</title>
-<g id="a_node11"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1MetaInfo.html" target="_top" xlink:title="MetaInfo">
+<!-- Node14 -->
+<g id="node9" class="node">
+<title>Node14</title>
+<g id="a_node9"><a xlink:href="classcs_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1MetaInfo.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="129,-182.5 129,-201.5 184,-201.5 184,-182.5 129,-182.5"/>
 <text text-anchor="middle" x="156.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MetaInfo</text>
 </a>
 </g>
 </g>
-<!-- Node12&#45;&gt;Node16 -->
-<g id="edge16" class="edge">
-<title>Node12&#45;&gt;Node16</title>
+<!-- Node12&#45;&gt;Node14 -->
+<g id="edge14" class="edge">
+<title>Node12&#45;&gt;Node14</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M254.9623,-422.8556C234.2991,-405.4354 203.1752,-375.7536 186.5,-343 161.428,-293.7534 173.4316,-275.1694 162.5,-221 161.1982,-214.5491 159.6982,-207.2991 158.5236,-201.6618"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="252.8948,-425.6869 262.8422,-429.3337 257.3401,-420.2795 252.8948,-425.6869"/>
 <text text-anchor="middle" x="224.5" y="-335" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> elapsedTime</text>
@@ -142,8 +145,11 @@
 <!-- Node13 -->
 <g id="node8" class="node">
 <title>Node13</title>
+<g id="a_node8"><a xlink:title=" ">
 <polygon fill="#ffffff" stroke="#bfbfbf" points="240,-487.5 240,-506.5 311,-506.5 311,-487.5 240,-487.5"/>
 <text text-anchor="middle" x="275.5" y="-494.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">IFormattable</text>
+</a>
+</g>
 </g>
 <!-- Node13&#45;&gt;Node12 -->
 <g id="edge7" class="edge">
@@ -151,26 +157,33 @@
 <path fill="none" stroke="#191970" d="M275.5,-477.153C275.5,-467.5796 275.5,-456.5235 275.5,-448.7856"/>
 <polygon fill="#191970" stroke="#191970" points="272.0001,-477.4224 275.5,-487.4225 279.0001,-477.4225 272.0001,-477.4224"/>
 </g>
-<!-- Node14 -->
-<g id="node9" class="node">
-<title>Node14</title>
-<g id="a_node9"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="AString">
+<!-- Node14&#45;&gt;Node8 -->
+<g id="edge10" class="edge">
+<title>Node14&#45;&gt;Node8</title>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M177.7331,-176.2762C188.0939,-168.7477 200.8156,-159.7141 212.5,-152 222.1747,-145.6126 233.2696,-138.8437 242.1389,-133.5614"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="175.6628,-173.4541 169.6598,-182.1842 179.7968,-179.1031 175.6628,-173.4541"/>
+<text text-anchor="middle" x="233.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> MetaInfo</text>
+</g>
+<!-- Node15 -->
+<g id="node10" class="node">
+<title>Node15</title>
+<g id="a_node10"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="0,-283.5 0,-302.5 49,-302.5 49,-283.5 0,-283.5"/>
 <text text-anchor="middle" x="24.5" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AString</text>
 </a>
 </g>
 </g>
-<!-- Node14&#45;&gt;Node8 -->
-<g id="edge10" class="edge">
-<title>Node14&#45;&gt;Node8</title>
+<!-- Node15&#45;&gt;Node8 -->
+<g id="edge16" class="edge">
+<title>Node15&#45;&gt;Node8</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M19.2951,-273.5625C16.3301,-258.323 14.7399,-237.0767 23.5,-221 43.7739,-183.793 165.8244,-147.834 225.5826,-132.1799"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="15.9143,-274.4781 21.5687,-283.4378 22.7358,-272.9075 15.9143,-274.4781"/>
 <text text-anchor="middle" x="97.5" y="-195" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> logBuf</text>
 <text text-anchor="middle" x="97.5" y="-184" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">msgBuf</text>
 </g>
-<!-- Node14&#45;&gt;Node16 -->
-<g id="edge13" class="edge">
-<title>Node14&#45;&gt;Node16</title>
+<!-- Node15&#45;&gt;Node14 -->
+<g id="edge11" class="edge">
+<title>Node15&#45;&gt;Node14</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M25.4429,-273.0186C27.2802,-256.826 32.4176,-234.5467 46.5,-221 58.2069,-209.7385 100.2883,-200.9755 128.8744,-196.15"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="21.9472,-272.8244 24.6288,-283.0742 28.9244,-273.3893 21.9472,-272.8244"/>
 <text text-anchor="middle" x="84.5" y="-257" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Format</text>
@@ -178,66 +191,59 @@
 <text text-anchor="middle" x="84.5" y="-235" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">NoSourceFileInfo</text>
 <text text-anchor="middle" x="84.5" y="-224" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">NoMethodInfo</text>
 </g>
-<!-- Node15 -->
-<g id="node10" class="node">
-<title>Node15</title>
-<g id="a_node10"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title="ObjectConverter">
-<polygon fill="#ffffff" stroke="#000000" points="299.5,-182.5 299.5,-201.5 387.5,-201.5 387.5,-182.5 299.5,-182.5"/>
-<text text-anchor="middle" x="343.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ObjectConverter</text>
-</a>
-</g>
-</g>
-<!-- Node15&#45;&gt;Node8 -->
-<g id="edge11" class="edge">
-<title>Node15&#45;&gt;Node8</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M323.3506,-175.8805C306.8586,-162.6869 284.0907,-144.4725 270.3818,-133.5054"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="321.3264,-178.7433 331.3216,-182.2573 325.6993,-173.2772 321.3264,-178.7433"/>
-<text text-anchor="middle" x="328.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Converter</text>
-</g>
-<!-- Node16&#45;&gt;Node8 -->
-<g id="edge12" class="edge">
-<title>Node16&#45;&gt;Node8</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M177.7331,-176.2762C188.0939,-168.7477 200.8156,-159.7141 212.5,-152 222.1747,-145.6126 233.2696,-138.8437 242.1389,-133.5614"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="175.6628,-173.4541 169.6598,-182.1842 179.7968,-179.1031 175.6628,-173.4541"/>
-<text text-anchor="middle" x="233.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> MetaInfo</text>
-</g>
-<!-- Node17 -->
-<g id="node12" class="node">
-<title>Node17</title>
-<g id="a_node12"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" target="_top" xlink:title="Tokenizer">
+<!-- Node16 -->
+<g id="node11" class="node">
+<title>Node16</title>
+<g id="a_node11"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1Tokenizer.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="89,-283.5 89,-302.5 148,-302.5 148,-283.5 89,-283.5"/>
 <text text-anchor="middle" x="118.5" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Tokenizer</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node16 -->
-<g id="edge14" class="edge">
-<title>Node17&#45;&gt;Node16</title>
+<!-- Node16&#45;&gt;Node14 -->
+<g id="edge12" class="edge">
+<title>Node16&#45;&gt;Node14</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M123.2816,-273.4951C127.1676,-258.7868 133.193,-238.2655 140.5,-221 143.3238,-214.3277 147.2439,-207.1983 150.4971,-201.678"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="119.8203,-272.9046 120.7412,-283.4594 126.6033,-274.634 119.8203,-272.9046"/>
 <text text-anchor="middle" x="151.5" y="-240.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> tTok</text>
 </g>
-<!-- Node18 -->
-<g id="node13" class="node">
-<title>Node18</title>
-<g id="a_node13"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title="Substring">
+<!-- Node17 -->
+<g id="node12" class="node">
+<title>Node17</title>
+<g id="a_node12"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1Substring.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="89.5,-361.5 89.5,-380.5 147.5,-380.5 147.5,-361.5 89.5,-361.5"/>
 <text text-anchor="middle" x="118.5" y="-368.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Substring</text>
 </a>
 </g>
 </g>
-<!-- Node18&#45;&gt;Node17 -->
-<g id="edge15" class="edge">
-<title>Node18&#45;&gt;Node17</title>
+<!-- Node17&#45;&gt;Node16 -->
+<g id="edge13" class="edge">
+<title>Node17&#45;&gt;Node16</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M118.5,-351.2866C118.5,-335.7395 118.5,-314.7276 118.5,-302.6426"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="115.0001,-351.4356 118.5,-361.4357 122.0001,-351.4357 115.0001,-351.4356"/>
 <text text-anchor="middle" x="132.5" y="-335" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Rest</text>
 <text text-anchor="middle" x="132.5" y="-324" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Actual</text>
 </g>
+<!-- Node18 -->
+<g id="node13" class="node">
+<title>Node18</title>
+<g id="a_node13"><a xlink:href="classcs_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1ObjectConverter.html" target="_top" xlink:title=" ">
+<polygon fill="#ffffff" stroke="#000000" points="300,-182.5 300,-201.5 387,-201.5 387,-182.5 300,-182.5"/>
+<text text-anchor="middle" x="343.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ObjectConverter</text>
+</a>
+</g>
+</g>
+<!-- Node18&#45;&gt;Node8 -->
+<g id="edge15" class="edge">
+<title>Node18&#45;&gt;Node8</title>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M323.3506,-175.8805C306.8586,-162.6869 284.0907,-144.4725 270.3818,-133.5054"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="321.3264,-178.7433 331.3216,-182.2573 325.6993,-173.2772 321.3264,-178.7433"/>
+<text text-anchor="middle" x="328.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> Converter</text>
+</g>
 <!-- Node19 -->
 <g id="node14" class="node">
 <title>Node19</title>
-<g id="a_node14"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html" target="_top" xlink:title="AutoSizes">
+<g id="a_node14"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="405.5,-182.5 405.5,-201.5 467.5,-201.5 467.5,-182.5 405.5,-182.5"/>
 <text text-anchor="middle" x="436.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AutoSizes</text>
 </a>
@@ -248,7 +254,7 @@
 <title>Node19&#45;&gt;Node8</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M410.1693,-177.5115C394.5814,-169.313 374.2702,-159.2772 355.5,-152 334.5815,-143.8899 310.3315,-136.8899 291.3111,-131.9174"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="408.7387,-180.7153 419.2086,-182.3378 412.0356,-174.5403 408.7387,-180.7153"/>
-<text text-anchor="middle" x="405" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
+<text text-anchor="middle" x="404.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> AutoSizes</text>
 </g>
 </g>
 </svg>

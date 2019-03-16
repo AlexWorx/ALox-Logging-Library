@@ -1,16 +1,17 @@
 var searchData=
 [
   ['calculus',['Calculus',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1plugins_1_1Calculus.html',1,'aworx::lib::expressions::plugins']]],
-  ['calendardatetime',['CalendarDateTime',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1time_1_1CalendarDateTime.html',1,'aworx::lib::time']]],
-  ['calendarduration',['CalendarDuration',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1time_1_1CalendarDuration.html',1,'aworx::lib::time']]],
+  ['calendardatetime',['CalendarDateTime',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1system_1_1CalendarDateTime.html',1,'aworx::lib::system']]],
+  ['calendarduration',['CalendarDuration',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1system_1_1CalendarDuration.html',1,'aworx::lib::system']]],
   ['case',['Case',['.././java_ref/enumcom_1_1aworx_1_1lib_1_1lang_1_1Case.html',1,'com::aworx::lib::lang']]],
-  ['cibinaryautocast',['CIBinaryAutoCast',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1CompilerPlugin_1_1CIBinaryAutoCast.html',1,'aworx::lib::expressions::CompilerPlugin']]],
+  ['chararray',['CharArray',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1characters_1_1CharArray.html',1,'aworx::lib::characters']]],
+  ['ciautocast',['CIAutoCast',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1CompilerPlugin_1_1CIAutoCast.html',1,'aworx::lib::expressions::CompilerPlugin']]],
   ['cibinaryop',['CIBinaryOp',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1CompilerPlugin_1_1CIBinaryOp.html',1,'aworx::lib::expressions::CompilerPlugin']]],
   ['cifunction',['CIFunction',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1CompilerPlugin_1_1CIFunction.html',1,'aworx::lib::expressions::CompilerPlugin']]],
   ['ciunaryop',['CIUnaryOp',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1CompilerPlugin_1_1CIUnaryOp.html',1,'aworx::lib::expressions::CompilerPlugin']]],
+  ['cli',['Cli',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1cli_1_1Cli.html',1,'aworx::lib::cli']]],
   ['cliapp',['CLIApp',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1cli_1_1CLIApp.html',1,'aworx::lib::cli']]],
   ['cliargs',['CLIArgs',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html',1,'cs::aworx::lib::config::CLIArgs'],['.././java_ref/classcom_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html',1,'com::aworx::lib::config::CLIArgs'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1config_1_1CLIArgs.html',1,'aworx::lib::config::CLIArgs']]],
-  ['clilib',['CLILib',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1cli_1_1CLILib.html',1,'aworx::lib::cli']]],
   ['cliutil',['CLIUtil',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1cli_1_1CLIUtil.html',1,'aworx::lib::cli']]],
   ['clrdebuggerlogger',['CLRDebuggerLogger',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1CLRDebuggerLogger.html',1,'cs::aworx::lox::loggers']]],
   ['colorconsolelogger',['ColorConsoleLogger',['.././cs_ref/classcs_1_1aworx_1_1lox_1_1loggers_1_1ColorConsoleLogger.html',1,'cs::aworx::lox::loggers']]],
@@ -28,7 +29,7 @@ var searchData=
   ['constantidentifierentry',['ConstantIdentifierEntry',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1plugins_1_1Calculus_1_1ConstantIdentifierEntry.html',1,'aworx::lib::expressions::plugins::Calculus']]],
   ['containerop',['ContainerOp',['.././java_ref/enumcom_1_1aworx_1_1lib_1_1lang_1_1ContainerOp.html',1,'com::aworx::lib::lang']]],
   ['create',['Create',['.././java_ref/enumcom_1_1aworx_1_1lib_1_1lang_1_1Create.html',1,'com::aworx::lib::lang']]],
-  ['cstring',['CString',['.././java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html',1,'com::aworx::lib::strings::CString'],['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1strings_1_1CString.html',1,'aworx::lib::strings::CString&lt; TChar &gt;'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html',1,'cs::aworx::lib::strings::CString']]],
+  ['cstring',['CString',['.././java_ref/classcom_1_1aworx_1_1lib_1_1strings_1_1CString.html',1,'com::aworx::lib::strings::CString'],['.././cs_ref/classcs_1_1aworx_1_1lib_1_1strings_1_1CString.html',1,'cs::aworx::lib::strings::CString']]],
   ['currentdata',['CurrentData',['.././java_ref/enumcom_1_1aworx_1_1lib_1_1lang_1_1CurrentData.html',1,'com::aworx::lib::lang']]],
-  ['cursor',['Cursor',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html',1,'cs::aworx::lib::util::StringTree::Cursor'],['.././java_ref/classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html',1,'com::aworx::lib::util::StringTree::Cursor'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html',1,'aworx::lib::util::StringTree::Cursor']]]
+  ['cursor',['Cursor',['.././cs_ref/classcs_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html',1,'cs::aworx::lib::util::StringTree::Cursor'],['.././java_ref/classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Cursor.html',1,'com::aworx::lib::util::StringTree::Cursor'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1util_1_1StringTree_1_1Cursor.html',1,'aworx::lib::strings::util::StringTree::Cursor']]]
 ];

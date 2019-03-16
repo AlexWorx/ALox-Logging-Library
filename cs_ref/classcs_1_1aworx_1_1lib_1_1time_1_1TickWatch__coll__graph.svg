@@ -12,13 +12,16 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<polygon fill="#bfbfbf" stroke="#000000" points="3.5,-.5 3.5,-19.5 67.5,-19.5 67.5,-.5 3.5,-.5"/>
+<g id="a_node1"><a xlink:title=" ">
+<polygon fill="#bfbfbf" stroke="#000000" points="4,-.5 4,-19.5 67,-19.5 67,-.5 4,-.5"/>
 <text text-anchor="middle" x="35.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">TickWatch</text>
+</a>
+</g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" target="_top" xlink:title="Ticks">
+<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="15,-90.5 15,-109.5 56,-109.5 56,-90.5 15,-90.5"/>
 <text text-anchor="middle" x="35.5" y="-97.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Ticks</text>
 </a>
@@ -44,8 +47,11 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
+<g id="a_node3"><a xlink:title=" ">
 <polygon fill="#ffffff" stroke="#bfbfbf" points="0,-148.5 0,-167.5 71,-167.5 71,-148.5 0,-148.5"/>
 <text text-anchor="middle" x="35.5" y="-155.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">IFormattable</text>
+</a>
+</g>
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge">

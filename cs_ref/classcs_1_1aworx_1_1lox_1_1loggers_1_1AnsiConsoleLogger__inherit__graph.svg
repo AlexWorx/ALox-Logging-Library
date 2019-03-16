@@ -12,13 +12,16 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
+<g id="a_node1"><a xlink:title=" ">
 <polygon fill="#bfbfbf" stroke="#000000" points="0,-.5 0,-19.5 101,-19.5 101,-.5 0,-.5"/>
 <text text-anchor="middle" x="50.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AnsiConsoleLogger</text>
+</a>
+</g>
 </g>
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" target="_top" xlink:title="AnsiLogger">
+<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lox_1_1loggers_1_1AnsiLogger.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="18,-56.5 18,-75.5 83,-75.5 83,-56.5 18,-56.5"/>
 <text text-anchor="middle" x="50.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AnsiLogger</text>
 </a>
@@ -33,7 +36,7 @@
 <!-- Node2 -->
 <g id="node3" class="node">
 <title>Node2</title>
-<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title="TextLogger">
+<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1TextLogger.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="18,-112.5 18,-131.5 83,-131.5 83,-112.5 18,-112.5"/>
 <text text-anchor="middle" x="50.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">TextLogger</text>
 </a>
@@ -48,7 +51,7 @@
 <!-- Node3 -->
 <g id="node4" class="node">
 <title>Node3</title>
-<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger">
+<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lox_1_1detail_1_1Logger.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="27.5,-168.5 27.5,-187.5 73.5,-187.5 73.5,-168.5 27.5,-168.5"/>
 <text text-anchor="middle" x="50.5" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Logger</text>
 </a>
@@ -63,7 +66,7 @@
 <!-- Node4 -->
 <g id="node5" class="node">
 <title>Node4</title>
-<g id="a_node5"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title="SmartLock">
+<g id="a_node5"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1SmartLock.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="18.5,-224.5 18.5,-243.5 82.5,-243.5 82.5,-224.5 18.5,-224.5"/>
 <text text-anchor="middle" x="50.5" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">SmartLock</text>
 </a>
@@ -78,7 +81,7 @@
 <!-- Node5 -->
 <g id="node6" class="node">
 <title>Node5</title>
-<g id="a_node6"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title="ThreadLock">
+<g id="a_node6"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="16.5,-280.5 16.5,-299.5 84.5,-299.5 84.5,-280.5 16.5,-280.5"/>
 <text text-anchor="middle" x="50.5" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ThreadLock</text>
 </a>

@@ -5,75 +5,78 @@
  -->
 <!-- Title: ConfigurationPlugin Pages: 1 -->
 <svg width="255pt" height="140pt"
- viewBox="0.00 0.00 255.00 140.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ viewBox="0.00 0.00 254.50 140.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 136)">
 <title>ConfigurationPlugin</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-136 251,-136 251,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-136 250.5,-136 250.5,4 -4,4"/>
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<polygon fill="#bfbfbf" stroke="#000000" points="56,-112.5 56,-131.5 157,-131.5 157,-112.5 56,-112.5"/>
-<text text-anchor="middle" x="106.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ConfigurationPlugin</text>
+<g id="a_node1"><a xlink:title=" ">
+<polygon fill="#bfbfbf" stroke="#000000" points="55.5,-112.5 55.5,-131.5 156.5,-131.5 156.5,-112.5 55.5,-112.5"/>
+<text text-anchor="middle" x="106" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ConfigurationPlugin</text>
+</a>
+</g>
 </g>
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html" target="_top" xlink:title="CLIArgs">
-<polygon fill="#ffffff" stroke="#000000" points="0,-56.5 0,-75.5 53,-75.5 53,-56.5 0,-56.5"/>
-<text text-anchor="middle" x="26.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CLIArgs</text>
+<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html" target="_top" xlink:title=" ">
+<polygon fill="#ffffff" stroke="#000000" points="0,-56.5 0,-75.5 52,-75.5 52,-56.5 0,-56.5"/>
+<text text-anchor="middle" x="26" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">CLIArgs</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<path fill="none" stroke="#191970" d="M84.3429,-106.49C70.228,-96.6096 52.3849,-84.1194 40.2752,-75.6427"/>
-<polygon fill="#191970" stroke="#191970" points="82.3656,-109.3782 92.5651,-112.2455 86.3799,-103.6436 82.3656,-109.3782"/>
+<path fill="none" stroke="#191970" d="M83.8429,-106.49C69.728,-96.6096 51.8849,-84.1194 39.7752,-75.6427"/>
+<polygon fill="#191970" stroke="#191970" points="81.8656,-109.3782 92.0651,-112.2455 85.8799,-103.6436 81.8656,-109.3782"/>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node">
 <title>Node2</title>
-<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1Environment.html" target="_top" xlink:title="Environment">
-<polygon fill="#ffffff" stroke="#000000" points="71,-56.5 71,-75.5 142,-75.5 142,-56.5 71,-56.5"/>
-<text text-anchor="middle" x="106.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Environment</text>
+<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1Environment.html" target="_top" xlink:title=" ">
+<polygon fill="#ffffff" stroke="#000000" points="70.5,-56.5 70.5,-75.5 141.5,-75.5 141.5,-56.5 70.5,-56.5"/>
+<text text-anchor="middle" x="106" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Environment</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node2 -->
 <g id="edge2" class="edge">
 <title>Node0&#45;&gt;Node2</title>
-<path fill="none" stroke="#191970" d="M106.5,-102.1575C106.5,-93.155 106.5,-82.9199 106.5,-75.6427"/>
-<polygon fill="#191970" stroke="#191970" points="103.0001,-102.2455 106.5,-112.2455 110.0001,-102.2456 103.0001,-102.2455"/>
+<path fill="none" stroke="#191970" d="M106,-102.1575C106,-93.155 106,-82.9199 106,-75.6427"/>
+<polygon fill="#191970" stroke="#191970" points="102.5001,-102.2455 106,-112.2455 109.5001,-102.2456 102.5001,-102.2455"/>
 </g>
 <!-- Node3 -->
 <g id="node4" class="node">
 <title>Node3</title>
-<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" target="_top" xlink:title="InMemoryPlugin">
-<polygon fill="#ffffff" stroke="#000000" points="160,-56.5 160,-75.5 247,-75.5 247,-56.5 160,-56.5"/>
-<text text-anchor="middle" x="203.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">InMemoryPlugin</text>
+<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" target="_top" xlink:title=" ">
+<polygon fill="#ffffff" stroke="#000000" points="159.5,-56.5 159.5,-75.5 246.5,-75.5 246.5,-56.5 159.5,-56.5"/>
+<text text-anchor="middle" x="203" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">InMemoryPlugin</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node3 -->
 <g id="edge3" class="edge">
 <title>Node0&#45;&gt;Node3</title>
-<path fill="none" stroke="#191970" d="M132.4016,-107.0465C149.6609,-97.0824 171.8376,-84.2794 186.7975,-75.6427"/>
-<polygon fill="#191970" stroke="#191970" points="130.3065,-104.2146 123.3961,-112.2455 133.8064,-110.2768 130.3065,-104.2146"/>
+<path fill="none" stroke="#191970" d="M131.9016,-107.0465C149.1609,-97.0824 171.3376,-84.2794 186.2975,-75.6427"/>
+<polygon fill="#191970" stroke="#191970" points="129.8065,-104.2146 122.8961,-112.2455 133.3064,-110.2768 129.8065,-104.2146"/>
 </g>
 <!-- Node4 -->
 <g id="node5" class="node">
 <title>Node4</title>
-<g id="a_node5"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html" target="_top" xlink:title="IniFile">
-<polygon fill="#ffffff" stroke="#000000" points="182,-.5 182,-19.5 225,-19.5 225,-.5 182,-.5"/>
-<text text-anchor="middle" x="203.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">IniFile</text>
+<g id="a_node5"><a xlink:href="classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html" target="_top" xlink:title=" ">
+<polygon fill="#ffffff" stroke="#000000" points="181.5,-.5 181.5,-19.5 224.5,-19.5 224.5,-.5 181.5,-.5"/>
+<text text-anchor="middle" x="203" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">IniFile</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge4" class="edge">
 <title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="#191970" d="M203.5,-46.1575C203.5,-37.155 203.5,-26.9199 203.5,-19.6427"/>
-<polygon fill="#191970" stroke="#191970" points="200.0001,-46.2455 203.5,-56.2455 207.0001,-46.2456 200.0001,-46.2455"/>
+<path fill="none" stroke="#191970" d="M203,-46.1575C203,-37.155 203,-26.9199 203,-19.6427"/>
+<polygon fill="#191970" stroke="#191970" points="199.5001,-46.2455 203,-56.2455 206.5001,-46.2456 199.5001,-46.2455"/>
 </g>
 </g>
 </svg>

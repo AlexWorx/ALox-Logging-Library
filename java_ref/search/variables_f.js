@@ -1,12 +1,12 @@
 var searchData=
 [
   ['package',['PACKAGE',['../enumcom_1_1aworx_1_1lox_1_1Scope.html#a79a5eb01dd38711dea806b59b432475e',1,'com::aworx::lox::Scope']]],
-  ['packagename',['packageName',['../classcom_1_1aworx_1_1lox_1_1core_1_1ScopeInfo.html#a436e0978ded8aef84f28e7fa3044b3b1',1,'com::aworx::lox::core::ScopeInfo']]],
-  ['parent',['parent',['../classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#a81a028255ddea0de66dea19140d52bfb',1,'com.aworx.lib.util.StringTree.Node.parent()'],['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#aba83a403d4a69d5c0fe7baef351b1162',1,'com.aworx.lox.core.Domain.parent()']]],
+  ['packagename',['packageName',['../classcom_1_1aworx_1_1lox_1_1detail_1_1ScopeInfo.html#a436e0978ded8aef84f28e7fa3044b3b1',1,'com::aworx::lox::detail::ScopeInfo']]],
+  ['parent',['parent',['../classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Node.html#a81a028255ddea0de66dea19140d52bfb',1,'com.aworx.lib.util.StringTree.Node.parent()'],['../classcom_1_1aworx_1_1lox_1_1detail_1_1Domain.html#aba83a403d4a69d5c0fe7baef351b1162',1,'com.aworx.lox.detail.Domain.parent()']]],
   ['pargoffset',['pargOffset',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a7869a21107624cdac137a0e01b13b18f',1,'com::aworx::lib::strings::format::FormatterStdImpl']]],
   ['parguments',['parguments',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ad436c25a10181a448745f6ce7ff96df5',1,'com::aworx::lib::strings::format::FormatterStdImpl']]],
   ['parser',['parser',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#ac5266ddfc119218fadb17b56e0aa7f18',1,'com::aworx::lib::strings::format::FormatterStdImpl']]],
-  ['path_5fseparator',['PATH_SEPARATOR',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#a1ff0cc608b849c79d921a7e5cac3ff8a',1,'com::aworx::lox::core::Domain']]],
+  ['path_5fseparator',['PATH_SEPARATOR',['../classcom_1_1aworx_1_1lox_1_1detail_1_1Domain.html#a1ff0cc608b849c79d921a7e5cac3ff8a',1,'com::aworx::lox::detail::Domain']]],
   ['pathsorter',['pathSorter',['../classcom_1_1aworx_1_1lib_1_1util_1_1StringTree_1_1Walker_1_1Sorter.html#a60bcec97503f4ca8574a27c951c5f740',1,'com::aworx::lib::util::StringTree::Walker::Sorter']]],
   ['pformatstring',['pformatString',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a5045c1108b03eb4d7f3746579eb8f7c6',1,'com::aworx::lib::strings::format::FormatterStdImpl']]],
   ['phaalignment',['phaAlignment',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a42cf696609494c55050a14311909a4c8',1,'com::aworx::lib::strings::format::FormatterStdImpl']]],
@@ -35,7 +35,7 @@ var searchData=
   ['plussign',['plusSign',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a2d3773f6f6b81214b9b83298a7c64e14',1,'com::aworx::lib::strings::NumberFormat']]],
   ['pow10_5f0to18',['pow10_0to18',['../classcom_1_1aworx_1_1lib_1_1strings_1_1NumberFormat.html#a857acb2185bcaa4962023f585f8b701c',1,'com::aworx::lib::strings::NumberFormat']]],
   ['prefixes',['PREFIXES',['../classcom_1_1aworx_1_1lox_1_1ALox.html#a356160ccbbf174202c8b5fa40c785064',1,'com::aworx::lox::ALox']]],
-  ['prefixlogables',['prefixLogables',['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain.html#ac8fd14b26bac4257e13eee401026db3e',1,'com::aworx::lox::core::Domain']]],
+  ['prefixlogables',['prefixLogables',['../classcom_1_1aworx_1_1lox_1_1detail_1_1Domain.html#ac8fd14b26bac4257e13eee401026db3e',1,'com::aworx::lox::detail::Domain']]],
   ['prio',['prio',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration_1_1PluginAndPrio.html#a6f8e491cf1d80eb127fe0c10ebbfc659',1,'com::aworx::lib::config::Configuration::PluginAndPrio']]],
   ['prio_5fauto_5fdetect',['PRIO_AUTO_DETECT',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ae338924437f057dc9cfeca76857eb1e1',1,'com::aworx::lib::config::Configuration']]],
   ['prio_5fcli_5fargs',['PRIO_CLI_ARGS',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a9b8702defe915920dd95316b71c39ff2',1,'com::aworx::lib::config::Configuration']]],
@@ -43,8 +43,8 @@ var searchData=
   ['prio_5fenvironment',['PRIO_ENVIRONMENT',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#a89e63a99f338bcbce6a28f9453ef83a1',1,'com::aworx::lib::config::Configuration']]],
   ['prio_5fprotected_5fvalues',['PRIO_PROTECTED_VALUES',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#af069e20d07d2fff49d0b2591c356b08b',1,'com::aworx::lib::config::Configuration']]],
   ['prio_5fstandard',['PRIO_STANDARD',['../classcom_1_1aworx_1_1lib_1_1config_1_1Configuration.html#ac643d125944f360af62760e9b05a1934',1,'com::aworx::lib::config::Configuration']]],
-  ['priority',['priority',['../classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#acec9ce2df15222151ad66fcb1d74eb9f',1,'com.aworx.lib.config.Variable.priority()'],['../classcom_1_1aworx_1_1lox_1_1core_1_1Domain_1_1LoggerData.html#acec9ce2df15222151ad66fcb1d74eb9f',1,'com.aworx.lox.core.Domain.LoggerData.priority()']]],
+  ['priority',['priority',['../classcom_1_1aworx_1_1lib_1_1config_1_1Variable.html#acec9ce2df15222151ad66fcb1d74eb9f',1,'com.aworx.lib.config.Variable.priority()'],['../classcom_1_1aworx_1_1lox_1_1detail_1_1Domain_1_1LoggerData.html#acec9ce2df15222151ad66fcb1d74eb9f',1,'com.aworx.lox.detail.Domain.LoggerData.priority()']]],
   ['processname',['processName',['../classcom_1_1aworx_1_1lib_1_1system_1_1ProcessInfo.html#acdefe8c9e0fc3c1abb1655ea13d4f3d0',1,'com::aworx::lib::system::ProcessInfo']]],
-  ['pruneescsequences',['pruneESCSequences',['../classcom_1_1aworx_1_1lox_1_1core_1_1textlogger_1_1PlainTextLogger.html#a835bfd5464257a4999c47be1fc38e725',1,'com::aworx::lox::core::textlogger::PlainTextLogger']]],
+  ['pruneescsequences',['pruneESCSequences',['../classcom_1_1aworx_1_1lox_1_1detail_1_1textlogger_1_1PlainTextLogger.html#a835bfd5464257a4999c47be1fc38e725',1,'com::aworx::lox::detail::textlogger::PlainTextLogger']]],
   ['ptargetstring',['ptargetString',['../classcom_1_1aworx_1_1lib_1_1strings_1_1format_1_1FormatterStdImpl.html#a945cad967d9a849a90c1d46f3c27cd65',1,'com::aworx::lib::strings::format::FormatterStdImpl']]]
 ];

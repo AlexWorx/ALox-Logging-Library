@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['memoryblocks',['MemoryBlocks',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#a11f6cf54ed2fafb1fe0aa2c283278bdc',1,'aworx']]],
+  ['mapping',['Mapping',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1boxing_1_1T__Boxer.html#add9f2156d163aae5c8eab9840d2b1e66',1,'aworx::lib::boxing::T_Boxer::Mapping()'],['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1boxing_1_1compatibility_1_1std_1_1T__Boxer_3_01std_1_1array_3_01TElement_0f9b1c18ff3bd4c1e81b9a55279d2fbf0.html#a4056dbb97241f34156a6d689b2578536',1,'aworx::lib::boxing::compatibility::std::T_Boxer&lt; std::array&lt; TElement, N &gt;, ATMP_VOID_IF(!characters::TT_IsChar&lt; TElement &gt;::value) &gt;::Mapping()'],['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1boxing_1_1compatibility_1_1std_1_1T__Boxer_3_01std_1_1vector_3_01TElement_5a16670cd482dc4e012e3247e0430cc8.html#a4056dbb97241f34156a6d689b2578536',1,'aworx::lib::boxing::compatibility::std::T_Boxer&lt; std::vector&lt; TElement &gt;, ATMP_VOID_IF(!characters::TT_IsChar&lt; TElement &gt;::value) &gt;::Mapping()']]],
+  ['memoryblocks',['MemoryBlocks',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#af6aeb8ca08cb90fdbee7b4612de2845e',1,'aworx']]],
   ['memorylogger',['MemoryLogger',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx.html#af47fc69c164213da34a832787ce71889',1,'aworx']]]
 ];

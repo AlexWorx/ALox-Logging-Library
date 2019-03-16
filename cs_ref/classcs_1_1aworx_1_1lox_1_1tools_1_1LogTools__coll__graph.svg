@@ -12,13 +12,16 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
+<g id="a_node1"><a xlink:title=" ">
 <polygon fill="#bfbfbf" stroke="#000000" points="27.5,-.5 27.5,-19.5 83.5,-19.5 83.5,-.5 27.5,-.5"/>
 <text text-anchor="middle" x="55.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">LogTools</text>
+</a>
+</g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title="AString">
+<g id="a_node2"><a xlink:href="classcs_1_1aworx_1_1lib_1_1strings_1_1AString.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="0,-78.5 0,-97.5 49,-97.5 49,-78.5 0,-78.5"/>
 <text text-anchor="middle" x="24.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">AString</text>
 </a>
@@ -35,7 +38,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title="ThreadLock">
+<g id="a_node3"><a xlink:href="classcs_1_1aworx_1_1lib_1_1threads_1_1ThreadLock.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="67.5,-78.5 67.5,-97.5 135.5,-97.5 135.5,-78.5 67.5,-78.5"/>
 <text text-anchor="middle" x="101.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ThreadLock</text>
 </a>
@@ -51,7 +54,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" target="_top" xlink:title="Ticks">
+<g id="a_node4"><a xlink:href="classcs_1_1aworx_1_1lib_1_1time_1_1Ticks.html" target="_top" xlink:title=" ">
 <polygon fill="#ffffff" stroke="#000000" points="81,-146.5 81,-165.5 122,-165.5 122,-146.5 81,-146.5"/>
 <text text-anchor="middle" x="101.5" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">Ticks</text>
 </a>
@@ -75,8 +78,11 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
+<g id="a_node5"><a xlink:title=" ">
 <polygon fill="#ffffff" stroke="#bfbfbf" points="66,-204.5 66,-223.5 137,-223.5 137,-204.5 66,-204.5"/>
 <text text-anchor="middle" x="101.5" y="-211.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">IFormattable</text>
+</a>
+</g>
 </g>
 <!-- Node5&#45;&gt;Node4 -->
 <g id="edge4" class="edge">

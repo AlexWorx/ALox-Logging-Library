@@ -1,6 +1,0 @@
-<map id="ConfigurationPlugin" name="ConfigurationPlugin">
-<area shape="rect" id="node2" href="$classcs_1_1aworx_1_1lib_1_1config_1_1CLIArgs.html" title="CLIArgs" alt="" coords="5,80,76,107"/>
-<area shape="rect" id="node3" href="$classcs_1_1aworx_1_1lib_1_1config_1_1Environment.html" title="Environment" alt="" coords="100,80,195,107"/>
-<area shape="rect" id="node4" href="$classcs_1_1aworx_1_1lib_1_1config_1_1InMemoryPlugin.html" title="InMemoryPlugin" alt="" coords="219,80,335,107"/>
-<area shape="rect" id="node5" href="$classcs_1_1aworx_1_1lib_1_1config_1_1IniFile.html" title="IniFile" alt="" coords="248,155,305,181"/>
-</map>

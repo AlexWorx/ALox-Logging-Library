@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['timezone',['Timezone',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#a9b1d8f31e178e17a8fef3a9e94bc4b2c',1,'aworx::lib::lang']]],
-  ['tokens',['Tokens',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1expressions_1_1detail_1_1ParserImpl.html#ad06cf2cc14e5366d002a2ac06beb5e3d',1,'aworx::lib::expressions::detail::ParserImpl']]],
-  ['type',['Type',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1lox_1_1Lox_1_1DomainSubstitutionRule.html#a1d1cfd8ffb84e947f82999c682b666a7',1,'aworx::lib::lox::Lox::DomainSubstitutionRule']]],
-  ['types',['Types',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1AST.html#a8aaeba5aed18516d10d61fe3139c9d32',1,'aworx::lib::expressions::detail::AST']]]
+  ['safeness',['Safeness',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#a8c800527afe0a8a6c71ae4cceda6bf9d',1,'aworx::lib']]],
+  ['scope',['Scope',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lox.html#aaecc53892786f2fa11e682f633af84c6',1,'aworx::lib::lox']]],
+  ['sortorder',['SortOrder',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#ad9be72f666a31b4318bbc8e8a16a9472',1,'aworx::lib']]],
+  ['sourcedata',['SourceData',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#ab0acd6daf9443d8b997f1035cfe08dd8',1,'aworx::lib']]],
+  ['specialfolder',['SpecialFolder',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0',1,'aworx::lib::system::Directory']]],
+  ['stateinfo',['StateInfo',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1lox_1_1Lox.html#aa2916fda7c89ab56ba7645d99879df31',1,'aworx::lib::lox::Lox']]],
+  ['switch',['Switch',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#a9f3c28a2cb05bdcc618b542e49bfda3f',1,'aworx::lib']]],
+  ['systemerrors',['SystemErrors',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1system.html#ac5e2a99610cedf5e55a4c97dba96bdff',1,'aworx::lib::system']]]
 ];

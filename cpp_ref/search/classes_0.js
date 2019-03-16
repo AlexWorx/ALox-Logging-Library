@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['alib',['ALib',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1ALib.html',1,'aworx::lib']]],
+  ['alibmodules',['ALibModules',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1ALibModules.html',1,'aworx::lib']]],
   ['alox',['ALox',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1lox_1_1ALox.html',1,'aworx::lib::lox']]],
   ['aloxreportwriter',['ALoxReportWriter',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1lox_1_1ALoxReportWriter.html',1,'aworx::lib::lox']]],
   ['ansiconsolelogger',['AnsiConsoleLogger',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1lox_1_1loggers_1_1AnsiConsoleLogger.html',1,'aworx::lib::lox::loggers']]],
@@ -12,17 +12,14 @@ var searchData=
   ['argumentdecl_3c_20parameterdecl_20_3e',['ArgumentDecl&lt; ParameterDecl &gt;',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1cli_1_1ArgumentDecl.html',1,'']]],
   ['argumentdef',['ArgumentDef',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1cli_1_1ArgumentDef.html',1,'aworx::lib::cli']]],
   ['arithmetics',['Arithmetics',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1plugins_1_1Arithmetics.html',1,'aworx::lib::expressions::plugins']]],
-  ['arrayboxert',['ArrayBoxerT',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1boxing_1_1ArrayBoxerT.html',1,'aworx::lib::boxing']]],
   ['ast',['AST',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1AST.html',1,'aworx::lib::expressions::detail']]],
   ['astbinaryop',['ASTBinaryOp',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1ASTBinaryOp.html',1,'aworx::lib::expressions::detail']]],
   ['astconditional',['ASTConditional',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1ASTConditional.html',1,'aworx::lib::expressions::detail']]],
   ['astfunction',['ASTFunction',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1ASTFunction.html',1,'aworx::lib::expressions::detail']]],
   ['astidentifier',['ASTIdentifier',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1ASTIdentifier.html',1,'aworx::lib::expressions::detail']]],
   ['astliteral',['ASTLiteral',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1ASTLiteral.html',1,'aworx::lib::expressions::detail']]],
-  ['astringbase',['AStringBase',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1AStringBase.html',1,'aworx::lib::strings']]],
-  ['astringbase_3c_20character_20_3e',['AStringBase&lt; character &gt;',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1AStringBase.html',1,'AStringBase&lt; character &gt;'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1AStringBase.html',1,'AStringBase&lt; character &gt;']]],
-  ['astringbase_3c_20nchar_20_3e',['AStringBase&lt; nchar &gt;',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1AStringBase.html',1,'AStringBase&lt; nchar &gt;'],['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1AStringBase.html',1,'AStringBase&lt; nchar &gt;']]],
   ['astunaryop',['ASTUnaryOp',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1detail_1_1ASTUnaryOp.html',1,'aworx::lib::expressions::detail']]],
   ['autocast',['AutoCast',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1plugins_1_1AutoCast.html',1,'aworx::lib::expressions::plugins']]],
+  ['autocastentry',['AutoCastEntry',['https://alexworx.github.io/ALib-Class-Library/structaworx_1_1lib_1_1expressions_1_1plugins_1_1Calculus_1_1AutoCastEntry.html',1,'aworx::lib::expressions::plugins::Calculus']]],
   ['autosizes',['AutoSizes',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1strings_1_1util_1_1AutoSizes.html',1,'aworx::lib::strings::util']]]
 ];

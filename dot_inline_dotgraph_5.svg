@@ -12,7 +12,7 @@
 <!-- logger -->
 <g id="node1" class="node">
 <title>logger</title>
-<g id="a_node1"><a xlink:href="./java_ref/classcom_1_1aworx_1_1lox_1_1core_1_1Logger.html" target="_top" xlink:title="Logger (Abstract)">
+<g id="a_node1"><a xlink:href="./java_ref/classcom_1_1aworx_1_1lox_1_1detail_1_1Logger.html" target="_top" xlink:title="Logger (Abstract)">
 <polygon fill="none" stroke="#000000" points="192.5,-73.5 192.5,-109.5 349.5,-109.5 349.5,-73.5 192.5,-73.5"/>
 <text text-anchor="middle" x="271" y="-87.8" font-family="Courier,monospace" font-size="14.00" fill="#000000">Logger (Abstract)</text>
 </a>

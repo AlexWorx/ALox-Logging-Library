@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['recursive',['Recursive',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#a00fc859257c8f09ff9198dde28121961a556c3dd912453ae5cb3095cd5054e6f4',1,'aworx::lib::lang']]],
   ['redundantbinaryopbrackets',['RedundantBinaryOpBrackets',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3abc8d0388dd434d7956837750d90976ac',1,'aworx::lib::expressions']]],
   ['redundantbracketsbetweentwounaryops',['RedundantBracketsBetweenTwoUnaryOps',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3a86e31ec846bf356d412152e0f9afd2ab',1,'aworx::lib::expressions']]],
   ['redundantbracketsiflhsandrhsarebinaryops',['RedundantBracketsIfLhsAndRhsAreBinaryOps',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3a900dd5a32b467b48b9cd078cfa1abc15',1,'aworx::lib::expressions']]],
   ['redundantconditionalopbrackets',['RedundantConditionalOpBrackets',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3aa5bfd03ff11d36d9a1bd30165dd8565c',1,'aworx::lib::expressions']]],
   ['redundantrhsbracketsifrhsisstrongerbinaryop',['RedundantRhsBracketsIfRhsIsStrongerBinaryOp',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3a41a9f83aa5d81e30f73c61280d359baa',1,'aworx::lib::expressions']]],
   ['redundantunaryopbrackets',['RedundantUnaryOpBrackets',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3a1d088548ef41c7b452eed703035ac985',1,'aworx::lib::expressions']]],
-  ['remove',['Remove',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#af6d9cc1e6686eca6e60d57d959cf57fba1063e38cb53d94d386f21227fcd84717',1,'aworx::lib::lang']]],
+  ['remove',['Remove',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#af6d9cc1e6686eca6e60d57d959cf57fba1063e38cb53d94d386f21227fcd84717',1,'aworx::lib']]],
   ['removeredundantunaryopsonnumberliterals',['RemoveRedundantUnaryOpsOnNumberLiterals',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3ac247e722a191c11f9568b943f0e8cb94',1,'aworx::lib::expressions']]],
   ['replacealiasoperators',['ReplaceAliasOperators',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3a7cb98ff4ba877f4c1b9318b25fde4bf8',1,'aworx::lib::expressions']]],
   ['replacefunctionnames',['ReplaceFunctionNames',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3a7c2bd4bd8f395c98c342e0e7912cb9a5',1,'aworx::lib::expressions']]],
@@ -16,8 +15,6 @@ var searchData=
   ['replaceverbaloperatorstolowercase',['ReplaceVerbalOperatorsToLowerCase',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3a22ae3749c0bfa6c4a341b4965c7ede12',1,'aworx::lib::expressions']]],
   ['replaceverbaloperatorstosymbolic',['ReplaceVerbalOperatorsToSymbolic',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3aa5ccfa052b1378e251f2ae5b8d919efa',1,'aworx::lib::expressions']]],
   ['replaceverbaloperatorstouppercase',['ReplaceVerbalOperatorsToUpperCase',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1expressions.html#a5ff21ac37397b09f1e9ab0b4bfcd99a3af4dca7c0f8ee87f937c2c4523fd26511',1,'aworx::lib::expressions']]],
-  ['resourceload',['resourceload',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a995aba3172a166a517d35ef8074e6a7f',1,'aworx::lib::lang::Library']]],
-  ['resourceset',['resourceset',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1lang_1_1Library.html#a5d32d09cde4f13ec4fb05a824d3e3219a3a093dc14f7d2052c85990fe5719492c',1,'aworx::lib::lang::Library']]],
-  ['right',['Right',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib_1_1lang.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c',1,'aworx::lib::lang']]],
+  ['right',['Right',['https://alexworx.github.io/ALib-Class-Library/namespaceaworx_1_1lib.html#acdfaca60ec19c0265bac2692d7982726a92b09c7c48c520c3c55e497875da437c',1,'aworx::lib']]],
   ['root',['Root',['https://alexworx.github.io/ALib-Class-Library/classaworx_1_1lib_1_1system_1_1Directory.html#a12c335c8e07182c17395a8f46f1965f0afa03eb688ad8aa1db593d33dabd89bad',1,'aworx::lib::system::Directory']]]
 ];

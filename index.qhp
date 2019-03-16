@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="ALox V. 1805 R. 0" ref="index.html">
+      <section title="ALox V. 1903 R. 0" ref="index.html">
         <section title="Overview" ref="index.html" />
         <section title="Manual" ref="manual.html" />
         <section title="Tools" ref="tools.html" />
@@ -35,6 +35,7 @@
       <keyword name="Contents" id="Contents" ref="manual.html" />
       <keyword name="Change Log" id="Change Log" ref="changelog.html" />
       <keyword name="FAQ - Frequently asked Questions for ALox" id="FAQ - Frequently asked Questions for ALox" ref="faq.html" />
+      <keyword name="Tools for ALox" id="Tools for ALox" ref="tools.html" />
       <keyword name="I - Configuration Variables" id="I - Configuration Variables" ref="group__GrpALoxConfigVars.html" />
       <keyword name="ALIB_LOCALE" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_LOCALE" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga3ba85db0d6d1aff71681e17a2cfb5b3a" />
       <keyword name="ALIB_HAS_CONSOLE_WINDOW" id="Man.Ref.I.ConfigurationVariables.dox::ALIB_HAS_CONSOLE_WINDOW" ref="Man_8Ref_8I_8ConfigurationVariables_8dox.html#ga0609e3155155dd75380c499571325be9" />
@@ -111,9 +112,11 @@
       <file>manual.html</file>
       <file>changelog.html</file>
       <file>faq.html</file>
+      <file>tools.html</file>
       <file>group__GrpALoxConfigVars.html</file>
       <file>graph_legend.svg</file>
       <file>graph_legend.html</file>
+      <file>dir_d6ea6a38326202c0b78ca05b3d49da22.html</file>
       <file>index.html</file>
       <file>modules.html</file>
       <file>hierarchy.html</file>
@@ -485,6 +488,33 @@
       <file>inherit_graph_364.svg</file>
       <file>inherit_graph_365.svg</file>
       <file>inherit_graph_366.svg</file>
+      <file>inherit_graph_367.svg</file>
+      <file>inherit_graph_368.svg</file>
+      <file>inherit_graph_369.svg</file>
+      <file>inherit_graph_370.svg</file>
+      <file>inherit_graph_371.svg</file>
+      <file>inherit_graph_372.svg</file>
+      <file>inherit_graph_373.svg</file>
+      <file>inherit_graph_374.svg</file>
+      <file>inherit_graph_375.svg</file>
+      <file>inherit_graph_376.svg</file>
+      <file>inherit_graph_377.svg</file>
+      <file>inherit_graph_378.svg</file>
+      <file>inherit_graph_379.svg</file>
+      <file>inherit_graph_380.svg</file>
+      <file>inherit_graph_381.svg</file>
+      <file>inherit_graph_382.svg</file>
+      <file>inherit_graph_383.svg</file>
+      <file>inherit_graph_384.svg</file>
+      <file>inherit_graph_385.svg</file>
+      <file>inherit_graph_386.svg</file>
+      <file>inherit_graph_387.svg</file>
+      <file>inherit_graph_388.svg</file>
+      <file>inherit_graph_389.svg</file>
+      <file>inherit_graph_390.svg</file>
+      <file>inherit_graph_391.svg</file>
+      <file>inherit_graph_392.svg</file>
+      <file>inherit_graph_393.svg</file>
       <file>pages.html</file>
     </files>
   </filterSection>
